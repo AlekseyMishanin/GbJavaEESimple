@@ -10,22 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Cart", urlPatterns = "/cart")
-public class Cart extends AbstractServlet {
+@WebServlet(name = "Cart", urlPatterns = Urls.CART)
+public class CartServlet extends AbstractServlet {
 
-    Logger log = LogManager.getLogger(Cart.class);
+    Logger log = LogManager.getLogger(CartServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String contextPath = getServletContext().getContextPath();
+
         resp.getWriter().println("<h1>" + this.getServletName() + "</h1>");
         resp.getWriter().println(
             "<ul>\n" +
-            "  <li><a href="+ Urls.MAIN +">Main</a></li>\n" +
-            "  <li><a href="+ Urls.CATALOG +">Catalog</a></li>\n" +
-            "  <li><a href="+ Urls.CART +">Cart</a></li>\n" +
-            "  <li><a href="+ Urls.PRODUCT +">Product</a></li>\n" +
-            "  <li><a href="+ Urls.ORDER +">Order</a></li>\n" +
+                    "  <li><a href="+ contextPath + Urls.MAIN +">Main</a></li>\n" +
+                    "  <li><a href="+ contextPath + Urls.CATALOG +">Catalog</a></li>\n" +
+                    "  <li><a href="+ contextPath + Urls.CART +">Cart</a></li>\n" +
+                    "  <li><a href="+ contextPath + Urls.PRODUCT +">Product</a></li>\n" +
+                    "  <li><a href="+ contextPath + Urls.ORDER +">Order</a></li>\n" +
             "</ul>"
         );
     }
