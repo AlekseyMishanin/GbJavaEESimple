@@ -2,6 +2,7 @@ package ru.mishanin.servlets;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.mishanin.model.Product;
 import ru.mishanin.utils.Urls;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "Catalog", urlPatterns = Urls.CATALOG)
 public class CatalogServlet extends AbstractServlet {
@@ -17,19 +20,14 @@ public class CatalogServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Product> products = new ArrayList<>();
 
-        String contextPath = getServletContext().getContextPath();
+        for (int i = 0; i < 10; i++) {
+            products.add(new Product("product" + i, "" + i));
+        }
 
-        resp.getWriter().println("<h1>" + this.getServletName() + "</h1>");
-        resp.getWriter().println(
-                "<ul>\n" +
-                        "  <li><a href="+ contextPath + Urls.MAIN +">Main</a></li>\n" +
-                        "  <li><a href="+ contextPath + Urls.CATALOG +">Catalog</a></li>\n" +
-                        "  <li><a href="+ contextPath + Urls.CART +">Cart</a></li>\n" +
-                        "  <li><a href="+ contextPath + Urls.PRODUCT +">Product</a></li>\n" +
-                        "  <li><a href="+ contextPath + Urls.ORDER +">Order</a></li>\n" +
-                        "</ul>"
-        );
+        req.setAttribute("products", products);
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/catalog.jsp").forward(req, resp);
     }
 
     @Override
