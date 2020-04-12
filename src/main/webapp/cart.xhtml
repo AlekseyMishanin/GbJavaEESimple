@@ -32,6 +32,10 @@
                             #{item.title}
                         </h:column>
                         <h:column>
+                            <f:facet name="header">Count</f:facet>
+                            #{cartController.getProductCount(item)}
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Cost</f:facet>
                             #{cartController.getProductCost(item)}
                         </h:column>

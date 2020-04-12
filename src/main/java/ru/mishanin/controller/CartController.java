@@ -29,8 +29,12 @@ public class CartController implements Serializable {
         return cart.keySet();
     }
 
-    public Integer getProductCost (Product product) {
+    public int getProductCount (Product product) {
         return cart.get(product);
+    }
+
+    public int getProductCost (Product product) {
+        return cart.get(product) * product.getCost();
     }
 
     public void minusOneProduct (Product product) {
