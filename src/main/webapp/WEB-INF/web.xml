@@ -22,12 +22,12 @@
 
   <context-param>
     <param-name>dbUsername</param-name>
-    <param-value>postgres</param-value>
+    <param-value>test</param-value>
   </context-param>
 
   <context-param>
     <param-name>dbPassword</param-name>
-    <param-value>lelybr</param-value>
+    <param-value>test</param-value>
   </context-param>
   
   <servlet>
