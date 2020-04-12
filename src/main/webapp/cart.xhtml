@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:include src="WEB-INF/jsp/include/head.xhtml">
+    <ui:param name="pageHeader" value="Product list"></ui:param>
+</ui:include>
+
+<h:body>
+
+    <ui:include src="WEB-INF/jsp/include/header.xhtml"></ui:include>
+
+    <h:outputText title="Cart"/>
+
+    <div class="container">
+        <div class="row py-2">
+            <h:form id="cartForm">
+                <div class="col-12">
+                    <h:commandButton value="Place your order" styleClass="btn btn-primary"
+                                     action="#{cartController.saveOrder}"/>
+                </div>
+
+                <div class="col-12">
+                    <h:dataTable value="#{cartController.allProducts}" var="item"
+                                 styleClass="table table-bordered my-2">
+                        <h:column>
+                            <f:facet name="header">Title</f:facet>
+                            #{item.title}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Cost</f:facet>
+                            #{cartController.getProductCost(item)}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton value="-" action="#{cartController.minusOneProduct(item)}"
+                                             styleClass="btn btn-danger">
+                                <f:ajax event="click" render="cartForm"/>
+                            </h:commandButton>
+                            <h:commandButton value="+" action="#{cartController.plusOneProduct(item)}"
+                                             styleClass="btn btn-danger">
+                                <f:ajax event="click" render="cartForm"/>
+                            </h:commandButton>
+                            <h:commandButton value="Remove product" action="#{cartController.removeAllProduct(item)}"
+                                             styleClass="btn btn-danger">
+                                <f:ajax event="click" render="cartForm"/>
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+        </div>
+    </div>
+</h:body>
+</html>

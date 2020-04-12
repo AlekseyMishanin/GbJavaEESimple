@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "Catalog", urlPatterns = Urls.CATALOG)
+//@WebServlet(name = "Catalog", urlPatterns = Urls.CATALOG)
 public class CatalogServlet extends AbstractServlet {
 
     Logger log = LogManager.getLogger(CatalogServlet.class);
@@ -23,7 +23,7 @@ public class CatalogServlet extends AbstractServlet {
         List<Product> products = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
-            products.add(new Product("product" + i, "" + i));
+            products.add(new Product("product" + i, i));
         }
 
         req.setAttribute("products", products);

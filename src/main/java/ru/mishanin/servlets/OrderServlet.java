@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Order", urlPatterns = Urls.ORDER)
+//@WebServlet(name = "Order", urlPatterns = Urls.ORDER)
 public class OrderServlet extends AbstractServlet {
 
     Logger log = LogManager.getLogger(OrderServlet.class);
