@@ -32,7 +32,7 @@ public class ProductController implements Serializable {
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public List<Product> getAllProduct() throws SQLException {
+    public List<Product> getAllProduct() {
         return productRepository.findAll();
     }
 
@@ -41,11 +41,11 @@ public class ProductController implements Serializable {
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public void deleteProduct(Product product) throws SQLException {
+    public void deleteProduct(Product product) {
         productRepository.delete(product.getId());
     }
 
-    public String saveProduct() throws SQLException {
+    public String saveProduct() {
         if (product.getId() == null) {
             productRepository.insert(product);
         } else {
