@@ -67,8 +67,8 @@ public class ProductRepository {
         return em.createQuery("from Product", Product.class).getResultList();
     }
 
-    public List findAllByCategory(String categoryValue) {
-        return em.createQuery("from Product p join p.category c WHERE c.title = :categoryName")
+    public List<Product> findAllByCategory(String categoryValue) {
+        return em.createQuery("select p from Product p join p.category c WHERE c.title = :categoryName")
                 .setParameter("categoryName", categoryValue)
                 .getResultList();
     }

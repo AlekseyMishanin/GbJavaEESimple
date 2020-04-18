@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.mishanin.service.CategoryCustom;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,5 +29,10 @@ public class Category {
     public Category(Integer id, String title) {
         this.id = id;
         this.title = title;
+    }
+
+    public Category(CategoryCustom categoryCustom) {
+        this.title = categoryCustom.getTitle();
+        this.products = categoryCustom.getProducts();
     }
 }

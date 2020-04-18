@@ -1,6 +1,7 @@
 package ru.mishanin.model;
 
 import lombok.*;
+import ru.mishanin.service.ProductCustom;
 
 import javax.persistence.*;
 
@@ -28,5 +29,11 @@ public class Product {
         this.title = title;
         this.cost = cost;
         this.category = category;
+    }
+
+    public Product(ProductCustom productCustom) {
+        this.title = productCustom.getTitle();
+        this.cost = productCustom.getCost();
+        this.category = productCustom.getCategory();
     }
 }

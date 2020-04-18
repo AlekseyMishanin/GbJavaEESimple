@@ -24,14 +24,8 @@ public class CategoryRepository {
     @PersistenceContext(unitName = "ds")
     private EntityManager em;
 
-    @Resource
-    private UserTransaction ut;
-
     @PostConstruct
     private void init() {
-//        IntStream.range(0,10)
-//                .mapToObj(index -> new Category(String.format("Category №%d", index)))
-//                .forEach(this::insert);
     }
 
     public void insert(Category category) {
@@ -46,7 +40,7 @@ public class CategoryRepository {
         em.remove(category);
     }
 
-    public List<Category> findAll() throws SQLException {
+    public List<Category> findAll() {
         return em.createQuery("from Category", Category.class).getResultList();
     }
 }
