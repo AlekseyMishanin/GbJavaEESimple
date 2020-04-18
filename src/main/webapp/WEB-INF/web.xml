@@ -5,14 +5,40 @@
          version="4.0">
   <display-name>Archetype Created Web Application</display-name>
 
-  <servlet>
-    <servlet-name>Main</servlet-name>
-    <servlet-class>ru.mishanin.servlets.MainServlet</servlet-class>
-  </servlet>
+<!--  <servlet>-->
+<!--    <servlet-name>Main</servlet-name>-->
+<!--    <servlet-class>ru.mishanin.servlets.MainServlet</servlet-class>-->
+<!--  </servlet>-->
 
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>Main</servlet-name>-->
+<!--    <url-pattern>/main</url-pattern>-->
+<!--  </servlet-mapping>-->
+
+  <context-param>
+    <param-name>jdbcConnectionString</param-name>
+    <param-value>jdbc:postgresql://localhost:5432/postgres?currentSchema=enterprise</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>dbUsername</param-name>
+    <param-value>test</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>dbPassword</param-name>
+    <param-value>test</param-value>
+  </context-param>
+  
+  <servlet>
+    <servlet-name>faces-servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
   <servlet-mapping>
-    <servlet-name>Main</servlet-name>
-    <url-pattern>/main</url-pattern>
+    <servlet-name>faces-servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
 
   <error-page>
