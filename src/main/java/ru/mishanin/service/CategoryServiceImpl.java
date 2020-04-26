@@ -1,7 +1,7 @@
 package ru.mishanin.service;
 
 import ru.mishanin.model.Category;
-import ru.mishanin.persist.CategoryRepository;
+import ru.mishanin.persist.CategoryRepositoryImpl;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService, Serializable {
 
     @Inject
-    private CategoryRepository categoryRepository;
+    private CategoryRepositoryImpl categoryRepository;
     
     @Override
     public void insert(CategoryCustom category) {

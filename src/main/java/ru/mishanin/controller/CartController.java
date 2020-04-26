@@ -2,7 +2,7 @@ package ru.mishanin.controller;
 
 import ru.mishanin.model.Order;
 import ru.mishanin.model.Product;
-import ru.mishanin.persist.OrderRepository;
+import ru.mishanin.persist.OrderRepositoryImpl;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class CartController implements Serializable {
 
     @Inject
-    private OrderRepository orderRepository;
+    private OrderRepositoryImpl orderRepository;
 
     private final Map<Product, Integer> cart = new HashMap<>();
 

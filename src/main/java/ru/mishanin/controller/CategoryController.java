@@ -3,8 +3,8 @@ package ru.mishanin.controller;
 import ru.mishanin.model.Category;
 import ru.mishanin.persist.CategoryRepository;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import java.util.List;
 @Named
 public class CategoryController implements Serializable {
 
-    @Inject
+    @EJB
     private CategoryRepository categoryRepository;
 
     private Category category;
