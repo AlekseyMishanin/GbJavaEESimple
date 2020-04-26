@@ -2,6 +2,8 @@ package ru.mishanin.controller;
 
 import ru.mishanin.model.Product;
 import ru.mishanin.persist.ProductRepository;
+import ru.mishanin.service.ProductCustom;
+import ru.mishanin.service.ProductService;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -15,41 +17,41 @@ import java.util.List;
 public class ProductController implements Serializable {
 
     @Inject
-    private ProductRepository productRepository;
+    private ProductService productService;
 
-    private Product product;
+    private ProductCustom product;
 
-    public Product getProduct() {
+    public ProductCustom getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductCustom product) {
         this.product = product;
     }
 
     public String createProduct() {
-        this.product = new Product();
+        this.product = new ProductCustom();
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public List<Product> getAllProduct() throws SQLException {
-        return productRepository.findAll();
+    public List<ProductCustom> getAllProduct() {
+        return productService.findAll();
     }
 
-    public String editProduct(Product product) {
+    public String editProduct(ProductCustom product) {
         this.product = product;
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public void deleteProduct(Product product) throws SQLException {
-        productRepository.delete(product.getId());
+    public void deleteProduct(Product product) {
+        productService.delete(product.getId());
     }
 
-    public String saveProduct() throws SQLException {
+    public String saveProduct() {
         if (product.getId() == null) {
-            productRepository.insert(product);
+            productService.insert(product);
         } else {
-            productRepository.update(product);
+            productService.update(product);
         }
         return "/index.xhtml?faces-redirect=true";
     }
