@@ -2,7 +2,9 @@ package ru.mishanin.service;
 
 import ru.mishanin.model.Product;
 import ru.mishanin.persist.ProductRepository;
+import ru.mishanin.persist.ProductRepositoryImpl;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +16,7 @@ import java.util.stream.Collectors;
 @Named
 public class ProductServiceImpl implements ProductService, Serializable {
 
-    @Inject
+    @EJB
     private ProductRepository productRepository;
 
     @Override

@@ -1,22 +1,20 @@
 package ru.mishanin.controller;
 
 import ru.mishanin.model.Product;
-import ru.mishanin.persist.ProductRepository;
 import ru.mishanin.service.ProductCustom;
 import ru.mishanin.service.ProductService;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 @SessionScoped
 @Named
 public class ProductController implements Serializable {
 
-    @Inject
+    @EJB
     private ProductService productService;
 
     private ProductCustom product;

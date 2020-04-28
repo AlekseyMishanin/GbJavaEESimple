@@ -1,46 +1,15 @@
 package ru.mishanin.persist;
 
-import lombok.extern.log4j.Log4j2;
 import ru.mishanin.model.Category;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
-import java.sql.*;
-import java.util.ArrayList;
+import javax.ejb.Local;
 import java.util.List;
-import java.util.stream.IntStream;
 
-@Log4j2
-@ApplicationScoped
-@Named
-public class CategoryRepository {
+@Local
+public interface CategoryRepository {
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager em;
-
-    @PostConstruct
-    private void init() {
-    }
-
-    public void insert(Category category) {
-        em.persist(category);
-    }
-
-    public void update(Category category) {
-        em.merge(category);
-    }
-
-    public void delete(Category category) {
-        em.remove(category);
-    }
-
-    public List<Category> findAll() {
-        return em.createQuery("from Category", Category.class).getResultList();
-    }
+    void insert(Category category);
+    void update(Category category);
+    void delete(Category category);
+    List<Category> findAll();
 }
