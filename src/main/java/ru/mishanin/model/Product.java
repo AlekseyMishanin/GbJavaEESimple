@@ -23,6 +23,7 @@ public class Product {
     @Column(name = "cost")
     private Integer cost;
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Product(String title, Integer cost, Category category) {

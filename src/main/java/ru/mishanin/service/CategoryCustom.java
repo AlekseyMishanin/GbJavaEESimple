@@ -17,10 +17,10 @@ public class CategoryCustom {
 
     private Integer id;
     private String title;
-    private List<Product> products;
+//    private List<Product> products;
 
     public CategoryCustom(Category category) {
         this.title = category.getTitle();
-        this.products = category.getProducts();
+//        this.products = category.getProducts();
     }
 }

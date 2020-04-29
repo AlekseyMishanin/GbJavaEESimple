@@ -34,14 +34,14 @@ public class ProductRepositoryImpl implements ProductRepository{
     }
     @Override
     @TransactionAttribute
-    public void delete(long id) {
+    public void delete(int id) {
         Product product = em.find(Product.class, id);
         if (product != null) {
             em.remove(product);
         }
     }
     @Override
-    public Product findById(long id) {
+    public Product findById(int id) {
         return em.find(Product.class, id);
     }
     @Override

@@ -6,6 +6,7 @@ import ru.mishanin.model.Category;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,16 +25,23 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     @PersistenceContext(unitName = "ds")
     private EntityManager em;
 
+    @TransactionAttribute
     public void insert(Category category) {
         em.persist(category);
     }
 
+    @TransactionAttribute
     public void update(Category category) {
         em.merge(category);
     }
 
+    @TransactionAttribute
     public void delete(Category category) {
-        em.remove(category);
+
+        Category categoryForDelete = em.find(Category.class, category.getId());
+        if(categoryForDelete != null) {
+            em.remove(categoryForDelete);
+        }
     }
 
     public List<Category> findAll() {

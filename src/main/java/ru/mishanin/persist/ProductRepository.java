@@ -10,8 +10,8 @@ public interface ProductRepository {
 
     void insert(Product product);
     void update(Product product);
-    void delete(long id);
-    Product findById(long id);
+    void delete(int id);
+    Product findById(int id);
     List<Product> findAll();
     List<Product> findAllByCategory(String categoryValue);
 }
