@@ -1,6 +1,5 @@
 package ru.mishanin.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Category {
 
     @Id
@@ -23,8 +21,8 @@ public class Category {
     private Integer id;
     @Column(name = "title")
     private String title;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Product> products;
 
     public Category(Integer id, String title) {
         this.id = id;
@@ -32,7 +30,8 @@ public class Category {
     }
 
     public Category(CategoryCustom categoryCustom) {
+        this.id = categoryCustom.getId();
         this.title = categoryCustom.getTitle();
-        this.products = categoryCustom.getProducts();
+//        this.products = categoryCustom.getProducts();
     }
 }

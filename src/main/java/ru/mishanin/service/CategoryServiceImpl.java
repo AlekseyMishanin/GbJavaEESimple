@@ -1,10 +1,11 @@
 package ru.mishanin.service;
 
 import ru.mishanin.model.Category;
-import ru.mishanin.persist.CategoryRepositoryImpl;
+import ru.mishanin.persist.CategoryRepository;
+import ru.mishanin.rest.CategoryServiceWs;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.stream.Collectors;
 
 @SessionScoped
 @Named
-public class CategoryServiceImpl implements CategoryService, Serializable {
+public class CategoryServiceImpl implements CategoryService, Serializable, CategoryServiceWs {
 
-    @Inject
-    private CategoryRepositoryImpl categoryRepository;
+    @EJB
+    private CategoryRepository categoryRepository;
     
     @Override
     public void insert(CategoryCustom category) {
